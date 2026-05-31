@@ -42,7 +42,6 @@ section {
   scroll-snap-stop: always;
 }
 
-/* split-layout을 가진 섹션은 overflow visible로 패널이 잘리지 않게 */
 .about{
   overflow: visible;
   padding-bottom: 50px;
@@ -65,9 +64,6 @@ section {
 .collaboration, .company {
   overflow: hidden;
 }
-/* ==========================================
-   Mouse Glow Aura
-   ========================================== */
 .cursor-glow {
   width: 600px;
   height: 600px;
@@ -84,9 +80,6 @@ section {
   opacity: 0;
 }
 
-/* ==========================================
-   Navbar
-   ========================================== */
 .navbar {
   position: fixed;
   top: 0;
@@ -122,9 +115,6 @@ section {
   color: #999;
 }
 
-/* ==========================================
-   Hero
-   ========================================== */
 .hero {
   flex-direction: row;
   justify-content: space-between;
@@ -225,9 +215,6 @@ section {
   line-height: 2;
 }
 
-/* ==========================================
-   Section Title (공통)
-   ========================================== */
 .section-title {
   font-size: 48px;
   margin-bottom: 40px;
@@ -238,9 +225,6 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
-/* ==========================================
-   Split Layout (블럭 + 상세 패널 공통)
-   ========================================== */
 .split-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -258,9 +242,6 @@ section {
   min-width: 0;
 }
 
-/* ==========================================
-   Detail Panel (우측 상세 영역)
-   ========================================== */
 .detail-panel {
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -276,7 +257,6 @@ section {
   overflow: hidden;
 }
 
-/* Tech 섹션 전용: 그리드 하단 전체 너비 패널 */
 .detail-panel--bottom {
   grid-column: 1 / -1;
   min-height: 120px;
@@ -288,7 +268,6 @@ section {
   border-color: rgba(138, 43, 226, 0.25);
 }
 
-/* 패널 내부 빛 효과 */
 .detail-panel.has-content::before {
   content: '';
   position: absolute;
@@ -301,7 +280,6 @@ section {
   pointer-events: none;
 }
 
-/* 힌트 문구 */
 .detail-hint {
   display: flex;
   align-items: center;
@@ -321,7 +299,6 @@ section {
   50% { transform: translateX(-6px); }
 }
 
-/* 상세 콘텐츠 */
 .detail-content {
   opacity: 0;
   transform: translateY(12px);
@@ -356,9 +333,6 @@ section {
   line-height: 1.9;
 }
 
-/* ==========================================
-   Timeline (About Me)
-   ========================================== */
 .timeline {
   border-left: 2px solid rgba(255, 255, 255, 0.1);
   margin-left: 20px;
@@ -383,7 +357,6 @@ section {
   transition: box-shadow 0.3s, transform 0.3s;
 }
 
-/* 활성 아이템의 타임라인 닷 강조 */
 .timeline-item:has(.block-item.active) .timeline-dot {
   box-shadow: 0 0 18px rgba(138, 43, 226, 0.9);
   transform: scale(1.3);
@@ -398,9 +371,6 @@ section {
   transition: 0.4s;
 }
 
-/* ==========================================
-   block-item (클릭 가능한 모든 블럭 공통)
-   ========================================== */
 .block-item {
   cursor: pointer;
   transition: transform 0.3s, background 0.3s, border-color 0.3s;
@@ -413,7 +383,6 @@ section {
   border-color: rgba(255, 255, 255, 0.12) !important;
 }
 
-/* timeline-content 특수 hover 덮어쓰기 */
 .timeline-content.block-item:hover {
   transform: translateX(8px);
 }
@@ -434,9 +403,6 @@ section {
   line-height: 1.6;
 }
 
-/* ==========================================
-   Tech Grid
-   ========================================== */
 .tech-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -457,9 +423,6 @@ section {
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
-/* ==========================================
-   Featured Card Grid (Collaboration, Failure)
-   ========================================== */
 .featured-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -478,7 +441,6 @@ section {
   overflow: hidden;
 }
 
-/* Featured Card 배경 효과 */
 .featured-card::before {
   content: '';
   position: absolute;
@@ -527,9 +489,6 @@ section {
   font-size: 15px;
 }
 
-/* ==========================================
-   Featured Card Large (Company)
-   ========================================== */
 .featured-grid-lg {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -553,7 +512,6 @@ section {
   min-height: 300px;
 }
 
-/* Featured Card LG 배경 효과 */
 .featured-card-lg::before {
   content: '';
   position: absolute;
@@ -601,9 +559,6 @@ section {
   z-index: 2;
 }
 
-/* ==========================================
-   Future Plan (Featured Box)
-   ========================================== */
 .featured-box {
   display: flex;
   justify-content: center;
@@ -629,7 +584,6 @@ section {
   width: 100%;
 }
 
-/* Featured Card XL 배경 효과 */
 .featured-card-xl::before {
   content: '';
   position: absolute;
@@ -691,9 +645,6 @@ section {
   z-index: 2;
 }
 
-/* ==========================================
-   Future / Problem (future-box)
-   ========================================== */
 .future-box {
   display: flex;
   flex-direction: column;
@@ -713,9 +664,6 @@ section {
   transform: translateX(8px) !important; /* scale 대신 translateX 통일 */
 }
 
-/* ==========================================
-   Future 섹션 스냅 보정
-   ========================================== */
 .future {
   height: 100vh;
   overflow: visible;
@@ -725,9 +673,6 @@ section {
   margin-bottom: 150px;
 }
 
-/* ==========================================
-   반응형 미디어 쿼리
-   ========================================== */
 @media (max-width: 1000px) {
   .hero {
     flex-direction: column;
@@ -775,13 +720,11 @@ section {
     gap: 20px;
   }
 
-  /* 모바일: split → 단일 컬럼 */
   .split-layout {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 
-  /* 모바일: 상세 패널은 블럭 아래에 위치 */
   .detail-panel {
     min-height: 140px;
     padding: 24px;
@@ -822,7 +765,6 @@ section {
     padding: 24px;
   }
 
-  /* Featured grid 반응형 */
   .featured-grid {
     grid-template-columns: 1fr;
     gap: 20px;

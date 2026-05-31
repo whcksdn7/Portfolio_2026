@@ -1,20 +1,10 @@
-// ==========================================
-// Pretext.js import (esm.sh CDN)
-// DOM 없이 텍스트 높이를 미리 계산해 패널 애니메이션에 활용
-// ==========================================
 import { prepare, layout } from 'https://esm.sh/@chenglou/pretext';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ==========================================
-// 1. 섹션 & 네비게이션 참조
-// ==========================================
 const sections = document.querySelectorAll("section");
 const navLinks = document.querySelectorAll(".navbar a");
 
-// ==========================================
-// 2. 네비게이션 활성화 상태 자동 업데이트
-// ==========================================
 function updateNavbar(index) {
   navLinks.forEach((link, idx) => {
     if (idx === index) {
@@ -39,9 +29,6 @@ sections.forEach((section, index) => {
 
 updateNavbar(0);
 
-// ==========================================
-// 3. 클릭 이벤트 연결 (네비게이션 & 버튼)
-// ==========================================
 navLinks.forEach((link, index) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -63,9 +50,6 @@ if (projectsBtn) {
   });
 }
 
-// ==========================================
-// 4. 마우스 트래커 오라 광채 효과
-// ==========================================
 const cursorGlow = document.querySelector(".cursor-glow");
 
 if (cursorGlow) {
@@ -91,10 +75,6 @@ if (cursorGlow) {
   });
 }
 
-// ==========================================
-// 5. 블럭 클릭 → 오른쪽 상세 패널 표시
-// ==========================================
-
 const detailData = {
   // About Me
   motivation: {
@@ -118,7 +98,6 @@ const detailData = {
       "IoT를 기반한 원격 모니터링 시스템과 AI를 융합해서 위험도를 예측하는 프로젝트를 진행하였습니다."
   },
 
-  // Problem Solving
   challenge: {
     section: "Problem Solving",
     title: "사라진 팀원들",
@@ -153,7 +132,6 @@ const detailData = {
     body: "지금은 새로운 기술을 배우는 것을 두려워하지 않고 도전하고 있습니다. 실패 경험이 오히려 단단한 밑바탕이 되었고, 낯선 기술 앞에서도 '일단 해보자'는 마인드로 접근할 수 있게 되었습니다. 두려움보다 성장에 집중하는 지금의 태도가 앞으로도 지속적인 발전의 원동력이 될 것이라고 믿습니다."
   },
 
-  // Tech Stack
   frontend: {
     section: "Tech Stack",
     title: "Frontend",
@@ -180,7 +158,6 @@ const detailData = {
     body: "Python을 기반으로 머신러닝 모델을 구현하고 실제 프로젝트에 적용해왔습니다. 데이터 전처리부터 모델 학습, 평가, 배포까지 전 과정을 경험했으며, AI 기술을 클라우드 인프라와 결합하여 실용적인 서비스로 발전시키는 것을 목표로 지속적으로 학습하고 있습니다."
   },
 
-  // Interested Company
   samsung: {
     section: "Interested Company",
     title: "Samsung SDS",
@@ -192,7 +169,6 @@ const detailData = {
     body: "작년 AWS 부트캠프에서 최우수상을 수상하며 클라우드 기술에 대한 깊은 관심이 생겼습니다. 전 세계 수백만 고객의 인프라를 지원하는 AWS에서 클라우드 서비스를 직접 개발하고 운영해보고 싶습니다. AWS의 혁신적인 기술 문화와 글로벌 영향력은 제가 지향하는 소프트웨어 엔지니어의 성장 환경과 일치합니다."
   },
 
-  // Future Plan
   short: {
     section: "Future Plan",
     title: "Middle Term",
@@ -200,33 +176,21 @@ const detailData = {
   }
 };
 
-// ==========================================
-// Pretext: 패널 높이를 DOM 없이 미리 계산해 GSAP 애니메이션에 활용
-// ==========================================
-
-// 패널 폰트 설정 (CSS와 동일하게 맞춰야 정확함)
 const DETAIL_FONT = '15px Pretendard';
-const DETAIL_LINE_HEIGHT = 28; // px, CSS line-height와 동기화
+const DETAIL_LINE_HEIGHT = 28;
 const LABEL_FONT = '11px Pretendard';
 const TITLE_FONT = '700 28px Pretendard';
-const PADDING_VERTICAL = 80; // 패널 상하 padding 합계 (40px * 2)
+const PADDING_VERTICAL = 80;
 const LABEL_HEIGHT = 20;
 const TITLE_HEIGHT = 44;
-const GAP = 24; // label→title, title→body 사이 간격 합계
+const GAP = 24;
 
-/**
- * Pretext로 body 텍스트 높이를 미리 계산한 뒤
- * 패널 전체 예상 높이를 반환
- */
 function calcPanelHeight(bodyText, panelWidth) {
   const prepared = prepare(bodyText, DETAIL_FONT);
   const { height: bodyHeight } = layout(prepared, panelWidth, DETAIL_LINE_HEIGHT);
   return PADDING_VERTICAL + LABEL_HEIGHT + TITLE_HEIGHT + GAP + bodyHeight;
 }
 
-// ==========================================
-// 상세 패널 표시 / 숨김
-// ==========================================
 const activeState = {};
 
 const panelMap = {
@@ -246,7 +210,6 @@ function showDetail(panelId, data) {
   const existing = panel.querySelector(".detail-content");
   const hint = panel.querySelector(".detail-hint");
 
-  // Pretext로 패널 높이 미리 계산
   const panelWidth = panel.offsetWidth - 80; // padding 좌우 40px 제외
   const targetHeight = calcPanelHeight(data.body, panelWidth);
 
@@ -263,7 +226,6 @@ function showDetail(panelId, data) {
     `;
     panel.appendChild(div);
 
-    // Pretext가 계산한 높이로 패널을 GSAP 애니메이션
     gsap.fromTo(panel,
       { minHeight: 80 },
       { minHeight: targetHeight, duration: 0.4, ease: "power2.out" }
@@ -305,7 +267,6 @@ function hideDetail(panelId) {
   }
 }
 
-// 모든 block-item에 클릭 이벤트 등록
 document.querySelectorAll(".block-item").forEach((el) => {
   el.addEventListener("click", () => {
     const sectionId = el.dataset.section;
@@ -314,7 +275,6 @@ document.querySelectorAll(".block-item").forEach((el) => {
 
     if (!key || !panelId || !detailData[key]) return;
 
-    // 같은 블럭 다시 클릭 → 토글(닫기)
     if (activeState[sectionId] === key) {
       activeState[sectionId] = null;
       el.classList.remove("active");
@@ -322,20 +282,15 @@ document.querySelectorAll(".block-item").forEach((el) => {
       return;
     }
 
-    // 같은 섹션의 이전 active 블럭 해제
     const prevActive = document.querySelector(
       `.block-item[data-section="${sectionId}"].active`
     );
     if (prevActive) prevActive.classList.remove("active");
 
-    // 새 블럭 활성화
     activeState[sectionId] = key;
     el.classList.add("active");
     showDetail(panelId, detailData[key]);
   });
 });
 
-// ==========================================
-// 6. 초기 리프레시
-// ==========================================
 ScrollTrigger.refresh();
