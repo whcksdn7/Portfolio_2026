@@ -1,0 +1,858 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background: #1A1A1A;
+  color: white;
+  overflow-x: hidden;
+}
+
+.wrap {
+  position: relative;
+  width: 100%;
+  z-index: 2;
+}
+
+section {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 100px;
+  position: relative;
+  overflow: hidden;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* split-layout을 가진 섹션은 overflow visible로 패널이 잘리지 않게 */
+.about{
+  overflow: visible;
+  padding-bottom: 50px;
+  margin-bottom: 100px;
+  scroll-margin-top: -50px;
+}
+
+.problem{
+  overflow: visible;
+  padding-bottom: 50px;
+  scroll-margin-top: -30px;
+}
+
+.failure{
+  overflow: visible;
+  padding-bottom: 60px;
+  margin-bottom: 50px;
+}
+
+.collaboration, .company {
+  overflow: hidden;
+}
+/* ==========================================
+   Mouse Glow Aura
+   ========================================== */
+.cursor-glow {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15) 0%, rgba(0, 191, 255, 0.05) 50%, transparent 70%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  filter: blur(60px);
+  transform: translate3d(-1000px, -1000px, 0);
+  will-change: transform;
+  opacity: 0;
+}
+
+/* ==========================================
+   Navbar
+   ========================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 25px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #999;
+}
+
+/* ==========================================
+   Hero
+   ========================================== */
+.hero {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bg-circle {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.1), transparent 70%);
+  position: absolute;
+  right: -100px;
+  top: -100px;
+  filter: blur(60px);
+  z-index: 1;
+}
+
+.hero-left {
+  width: 50%;
+  z-index: 2;
+}
+
+.small-title {
+  color: #888;
+  margin-bottom: 20px;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-size: 90px;
+  line-height: 1;
+  margin-bottom: 30px;
+}
+
+.hero-desc {
+  width: 80%;
+  color: #aaa;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-buttons button {
+  padding: 15px 40px;
+  border: none;
+  border-radius: 40px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-buttons button:hover {
+  transform: translateY(-5px);
+}
+
+.outline {
+  background: transparent;
+  border: 1px solid white !important;
+  color: white;
+}
+
+.hero-right {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.glass-card {
+  width: 350px;
+  height: 350px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: 0.4s;
+}
+
+.glass-card:hover {
+  transform: translateY(-10px) rotate(2deg);
+}
+
+.glass-card h2 {
+  font-size: 35px;
+  margin-bottom: 20px;
+}
+
+.glass-card p {
+  color: #aaa;
+  line-height: 2;
+}
+
+/* ==========================================
+   Section Title (공통)
+   ========================================== */
+.section-title {
+  font-size: 48px;
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================
+   Split Layout (블럭 + 상세 패널 공통)
+   ========================================== */
+.split-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}
+
+.blocks-col {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* ==========================================
+   Detail Panel (우측 상세 영역)
+   ========================================== */
+.detail-panel {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: border-color 0.4s, background 0.4s;
+  position: sticky;
+  top: 120px;
+  overflow: hidden;
+}
+
+/* Tech 섹션 전용: 그리드 하단 전체 너비 패널 */
+.detail-panel--bottom {
+  grid-column: 1 / -1;
+  min-height: 120px;
+  margin-top: 10px;
+}
+
+.detail-panel.has-content {
+  background: rgba(138, 43, 226, 0.05);
+  border-color: rgba(138, 43, 226, 0.25);
+}
+
+/* 패널 내부 빛 효과 */
+.detail-panel.has-content::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.12), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* 힌트 문구 */
+.detail-hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.2);
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+
+.detail-hint-icon {
+  font-size: 20px;
+  animation: nudge 1.8s ease-in-out infinite;
+}
+
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-6px); }
+}
+
+/* 상세 콘텐츠 */
+.detail-content {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.detail-content.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.detail-content .detail-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8a2be2;
+  margin-bottom: 8px;
+}
+
+.detail-content .detail-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.detail-content .detail-body {
+  font-size: 15px;
+  color: #aaa;
+  line-height: 1.9;
+}
+
+/* ==========================================
+   Timeline (About Me)
+   ========================================== */
+.timeline {
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+  margin-left: 20px;
+  gap: 0;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding-left: 40px;
+}
+
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8a2be2 0%, #00bfff 100%);
+  position: absolute;
+  left: -9px;
+  top: 5px;
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+/* 활성 아이템의 타임라인 닷 강조 */
+.timeline-item:has(.block-item.active) .timeline-dot {
+  box-shadow: 0 0 18px rgba(138, 43, 226, 0.9);
+  transform: scale(1.3);
+}
+
+.timeline-content {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 25px 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  transition: 0.4s;
+}
+
+/* ==========================================
+   block-item (클릭 가능한 모든 블럭 공통)
+   ========================================== */
+.block-item {
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s, border-color 0.3s;
+  user-select: none;
+}
+
+.block-item:hover {
+  transform: translateX(8px);
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* timeline-content 특수 hover 덮어쓰기 */
+.timeline-content.block-item:hover {
+  transform: translateX(8px);
+}
+
+.block-item.active {
+  background: rgba(138, 43, 226, 0.12) !important;
+  border-color: rgba(138, 43, 226, 0.4) !important;
+}
+
+.block-item h3 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.block-item p {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+/* ==========================================
+   Tech Grid
+   ========================================== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.tech-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 35px 40px;
+  border-radius: 24px;
+  transition: 0.4s;
+}
+
+.tech-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================
+   Featured Card Grid (Collaboration, Failure)
+   ========================================== */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+}
+
+.featured-card {
+  position: relative;
+  padding: 50px 40px 40px;
+  border-radius: 28px;
+  background: rgba(138, 43, 226, 0.08);
+  border: 1px solid rgba(138, 43, 226, 0.25);
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+/* Featured Card 배경 효과 */
+.featured-card::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.15), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.featured-card:hover {
+  transform: translateY(-16px);
+  background: rgba(138, 43, 226, 0.15);
+  border-color: rgba(138, 43, 226, 0.45);
+  box-shadow: 0 20px 60px rgba(138, 43, 226, 0.3);
+}
+
+.featured-card:hover::before {
+  transform: scale(1.2);
+  opacity: 1;
+}
+
+.featured-number {
+  font-size: 48px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #8a2be2 0%, #00bfff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.featured-card h3 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.featured-card p {
+  color: #aaa;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ==========================================
+   Featured Card Large (Company)
+   ========================================== */
+.featured-grid-lg {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  width: 100%;
+}
+
+.featured-card-lg {
+  position: relative;
+  padding: 60px 50px;
+  border-radius: 32px;
+  background: rgba(0, 191, 255, 0.08);
+  border: 1px solid rgba(0, 191, 255, 0.25);
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 300px;
+}
+
+/* Featured Card LG 배경 효과 */
+.featured-card-lg::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.2), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.featured-card-lg:hover {
+  transform: translateY(-20px);
+  background: rgba(0, 191, 255, 0.12);
+  border-color: rgba(0, 191, 255, 0.5);
+  box-shadow: 0 30px 80px rgba(0, 191, 255, 0.2);
+}
+
+.featured-card-lg:hover::before {
+  transform: scale(1.3);
+}
+
+.featured-icon {
+  font-size: 64px;
+  margin-bottom: 24px;
+  filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.3));
+}
+
+.featured-card-lg h3 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.featured-card-lg p {
+  color: #aaa;
+  line-height: 1.9;
+  font-size: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================
+   Future Plan (Featured Box)
+   ========================================== */
+.featured-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.featured-card-xl {
+  position: relative;
+  padding: 80px 60px;
+  border-radius: 36px;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1) 0%, rgba(0, 191, 255, 0.08) 100%);
+  border: 1px solid rgba(138, 43, 226, 0.3);
+  cursor: pointer;
+  transition: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 380px;
+  max-width: 700px;
+  width: 100%;
+}
+
+/* Featured Card XL 배경 효과 */
+.featured-card-xl::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.25), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.featured-card-xl::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.2), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: 0.4s;
+}
+
+.featured-card-xl:hover {
+  transform: translateY(-24px);
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.15) 0%, rgba(0, 191, 255, 0.12) 100%);
+  border-color: rgba(138, 43, 226, 0.5);
+  box-shadow: 0 40px 100px rgba(138, 43, 226, 0.25);
+}
+
+.featured-card-xl:hover::before {
+  transform: scale(1.2);
+}
+
+.featured-card-xl:hover::after {
+  transform: scale(1.2);
+}
+
+.featured-card-xl h3 {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.featured-card-xl p {
+  color: #aaa;
+  line-height: 2;
+  font-size: 18px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================================
+   Future / Problem (future-box)
+   ========================================== */
+.future-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.future-item {
+  padding: 30px 36px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.4s;
+}
+
+.future-item:hover {
+  transform: translateX(8px) !important; /* scale 대신 translateX 통일 */
+}
+
+/* ==========================================
+   Future 섹션 스냅 보정
+   ========================================== */
+.future {
+  height: 100vh;
+  overflow: visible;
+  scroll-snap-align: start;
+  scroll-margin-top: 35px;
+  padding-bottom: 100px;
+  margin-bottom: 150px;
+}
+
+/* ==========================================
+   반응형 미디어 쿼리
+   ========================================== */
+@media (max-width: 1000px) {
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    padding: 100px 30px 40px;
+    height: 100vh;
+  }
+
+  .hero-left,
+  .hero-right {
+    width: 100%;
+  }
+
+  .hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+
+  .hero-desc {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .glass-card {
+    width: 100%;
+    height: auto;
+    padding: 30px;
+  }
+
+  .glass-card h2 {
+    font-size: 28px;
+  }
+
+  .section-title {
+    font-size: 36px;
+    margin-bottom: 24px;
+  }
+
+  .navbar {
+    padding: 15px 24px;
+  }
+
+  .navbar ul {
+    gap: 20px;
+  }
+
+  /* 모바일: split → 단일 컬럼 */
+  .split-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* 모바일: 상세 패널은 블럭 아래에 위치 */
+  .detail-panel {
+    min-height: 140px;
+    padding: 24px;
+  }
+
+  .detail-content .detail-title {
+    font-size: 22px;
+  }
+
+  .about,
+  .tech {
+    padding: 80px 24px;
+    justify-content: center;
+    height: 100vh;
+  }
+
+  .future {
+    height: 100vh;
+    scroll-snap-align: start;
+    scroll-margin-top: 200px !important;
+  }
+
+  .timeline-item {
+    margin-bottom: 20px;
+  }
+
+  .timeline-content {
+    padding: 20px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .tech-card,
+  .future-item {
+    padding: 24px;
+  }
+
+  /* Featured grid 반응형 */
+  .featured-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .featured-grid-lg {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .featured-card-lg {
+    min-height: 240px;
+    padding: 40px 30px;
+  }
+
+  .featured-icon {
+    font-size: 48px;
+  }
+
+  .featured-card-lg h3 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 80px 24px;
+  }
+}

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jo Chanu Portfolio</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+
+<body>
+
+<div class="cursor-glow"></div>
+
+<div class="wrap">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="bg-circle"></div>
+
+    <div class="hero-left">
+      <p class="small-title">CLOUD · AI · BACKEND DEVELOPER</p>
+
+      <h1>
+        Learning <br>
+        Beyond Limits
+      </h1>
+
+      <p class="hero-desc">
+        프로젝트를 통해 임베디드, 클라우드, AI 기술에
+        흥미를 가지게 되었으며,
+        지속적인 학습으로 성장하는 개발자가 되고자 합니다.
+      </p>
+
+      <div class="hero-buttons">
+        <button>Explore</button>
+        <button class="outline">Projects</button>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="glass-card">
+        <h2>Interest</h2>
+        <p>
+          Cloud Computing<br>
+          AI Technology<br>
+          Backend System<br>
+          Embedded Network
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <h2 class="section-title">Issue</h2>
+
+    <div class="split-layout">
+      <div class="blocks-col timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="about" data-key="motivation">
+            <h3>고령화 사회의 심화</h3>
+            <p>의료 기술의 발전과 평균 수명의 증가로 전 세계적으로 고령화가 빠르게 진행되고 있습니다.
+              이에 따라 거동이 불편한 환자의 수 또한 지속적으로 증가하고 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="about" data-key="growth">
+            <h3>의료 인력 부족 문제</h3>
+            <p>환자 수는 증가하는 반면 의료 인력은 충분히 확보되지 못하고 있습니다.
+              그에 따라 의료진의 업무 부담과 피로도가 높아지고 있으며,
+              환자 개개인에 대한 세밀한 케어가 어려워지는 문제가 발생하고 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="about" data-key="influence">
+            <h3>AIoT 위험도 예측 시스템 개발</h3>
+            <p>열화상 카메라의 온도, 부위 데이터를 바탕으로 AI가 위험도를 예측하는 프로젝트</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="detail-panel" id="about-detail">
+        <div class="detail-hint">
+          <span class="detail-hint-icon">←</span>
+          <span>항목을 클릭하면 자세한 내용을 볼 수 있습니다</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROBLEM SOLVING ===== -->
+  <section class="problem" id="problem">
+    <h2 class="section-title">Problem Solving</h2>
+
+    <div class="split-layout">
+      <div class="blocks-col timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="problem" data-key="challenge">
+            <h3>탈주</h3>
+            <p>팀 프로젝트 진행 중 5명이던 팀원이 조기 취업 등의 이유로 2명만 남게 되었습니다.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="problem" data-key="solution">
+            <h3>책임감</h3>
+            <p>설상가상 팀장을 맡게 되었고, 부족한 인력을 극복하기 위해 네트워크, 전기 회로, 백엔드, 클라우드 기술을 추가 학습했습니다.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content block-item" data-section="problem" data-key="result">
+            <h3>결과</h3>
+            <p>프로젝트를 성공적으로 마무리하였고 특허 출원까지 진행할 수 있었습니다.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="detail-panel" id="problem-detail">
+        <div class="detail-hint">
+          <span class="detail-hint-icon">←</span>
+          <span>항목을 클릭하면 자세한 내용을 볼 수 있습니다</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== COLLABORATION ===== -->
+  <section class="collaboration" id="collaboration">
+    <h2 class="section-title">Collaboration</h2>
+
+    <div class="featured-grid">
+      <div class="featured-card block-item" data-section="collaboration" data-key="communication">
+        <div class="featured-number">01</div>
+        <h3>Cloud</h3>
+        <p>AI와 원격 시스템의 데이터들을 효율적으로 관리하기 위해 클라우드 서비스를 적극 활용했습니다.</p>
+      </div>
+
+      <div class="featured-card block-item" data-section="collaboration" data-key="leadership">
+        <div class="featured-number">02</div>
+        <h3>Embedded</h3>
+        <p>라즈베리파이와 열화상 카메라를 결합하여 실시간 데이터를 수집하는 임베디드 시스템을 개발하였습니다.</p>
+      </div>
+
+      <div class="featured-card block-item" data-section="collaboration" data-key="outcome">
+        <div class="featured-number">03</div>
+        <h3>Backend</h3>
+        <p>모든 데이터들을 실시간으로 서로 연결하고 처리하기 위한 백엔드 시스템을 개발하였습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TECH STACK ===== -->
+  <section class="tech" id="tech">
+    <h2 class="section-title">Tech Stack</h2>
+
+    <div class="tech-grid">
+
+      <div class="tech-card block-item" data-section="tech" data-key="frontend">
+        <h3>Frontend</h3>
+        <p>HTML / CSS / JavaScript</p>
+      </div>
+
+      <div class="tech-card block-item" data-section="tech" data-key="backend">
+        <h3>Backend</h3>
+        <p>Java / REST API</p>
+      </div>
+
+      <div class="tech-card block-item" data-section="tech" data-key="cloud">
+        <h3>Cloud</h3>
+        <p>AWS / Linux</p>
+      </div>
+
+      <div class="tech-card block-item" data-section="tech" data-key="embedded">
+        <h3>Embedded</h3>
+        <p>Raspberry Pi / Sensor</p>
+      </div>
+
+      <div class="tech-card block-item" data-section="tech" data-key="ai">
+        <h3>AI</h3>
+        <p>Python / Machine Learning</p>
+      </div>
+
+    </div>
+
+    <!-- Tech 섹션은 그리드 레이아웃이라 하단에 패널 배치 -->
+    <div class="detail-panel detail-panel--bottom" id="tech-detail">
+      <div class="detail-hint">
+        <span class="detail-hint-icon">↑</span>
+        <span>카드를 클릭하면 자세한 내용을 볼 수 있습니다</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="future" id="future">
+    <h2 class="section-title">Future Plan</h2>
+
+    <div class="featured-box">
+      <div class="featured-card-xl block-item" data-section="future" data-key="short">
+        <h3>Middle Term Goal</h3>
+        <p>AWS, 네트워크, 백엔드 기술을 심화 학습하고 관련 자격증을 준비할 계획입니다.</p>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="future-detail" style="margin-top: 40px;">
+      <div class="detail-hint">
+        <span class="detail-hint-icon">↑</span>
+        <span>블록을 클릭하면 자세한 내용을 볼 수 있습니다</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERESTED COMPANY ===== -->
+  <section class="company" id="company">
+    <h2 class="section-title">Interested Company</h2>
+
+    <div class="featured-grid-lg">
+      <div class="featured-card-lg block-item" data-section="company" data-key="samsung">
+        <div class="featured-icon">🏢</div>
+        <h3>Samsung SDS</h3>
+        <p>AI, 클라우드, 디지털 전환 기술을 통해 기업 혁신을 지원하는 점에 큰 관심을 가지고 있습니다.</p>
+      </div>
+
+      <div class="featured-card-lg block-item" data-section="company" data-key="aws">
+        <div class="featured-icon">☁️</div>
+        <h3>AWS</h3>
+        <p>AWS 부트캠프에서 최우수상을 수상한 경험을 통해 클라우드 기술에 대한 관심이 더욱 커졌습니다.</p>
+      </div>
+    </div>
+
+    <div class="detail-panel" id="company-detail" style="margin-top: 40px;">
+      <div class="detail-hint">
+        <span class="detail-hint-icon">↑</span>
+        <span>회사를 클릭하면 자세한 내용을 볼 수 있습니다</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script type="module" src="./js/script.js"></script>
+
+</body>
+</html>
