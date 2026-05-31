@@ -46,13 +46,13 @@ section {
   overflow: visible;
   padding-bottom: 50px;
   margin-bottom: 100px;
-  scroll-margin-top: -50px;
+  scroll-margin-top: 50px;
 }
 
 .problem{
   overflow: visible;
   padding-bottom: 50px;
-  scroll-margin-top: -30px;
+  scroll-margin-top: 50px;
 }
 
 .failure{
